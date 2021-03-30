@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension version="3.9" type="plugin" group="vmpayment" method="upgrade">
+    <name>VM Payment - Novalnet Direct Debit SEPA</name>
+    <creationDate>November 20 2019</creationDate>
+    <author>Novalnet AG</author>
+    <authorUrl>https://www.novalnet.de</authorUrl>
+    <authorEmail>technic@novalnet.de</authorEmail>
+    <url>https://www.novalnet.de</url>
+    <copyright>Copyright (c) Novalnet. All rights reserved.</copyright>
+    <license>https://www.novalnet.de/payment-plugins/kostenlos/lizenz</license>
+    <version>11.3.0</version>
+    <description><![CDATA[<a href="https:/www.novalnet.de" target="_blank">Novalnet</a>]]></description>
+    <files>
+        <filename plugin="novalnet_sepa">novalnet_sepa.php</filename>
+        <folder>novalnet_sepa</folder>
+    </files>
+    <vmconfig>
+        <fields name="params">
+            <fieldset name="basic" addfieldpath="/plugins/vmpayment/novalnet_sepa/novalnet_sepa/fields">
+                <field type="novalnetsepa" id="Novalnet_sepa" />
+            </fieldset>
+            <fieldset name="basic" addfieldpath="/plugins/vmpayment/novalnet_sepa/fields">
+                <field name="nn_test_mode" type="radio" default="0" label="VMPAYMENT_NOVALNET_ADMIN_TEST_MODE" description="VMPAYMENT_NOVALNET_TEST_MODE_DESCRIPTION">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="nn_payment_logos" type="vmfiles" multiple="true" label="VMPAYMENT_NOVALNET_ADMIN_LOGOS" description="VMPAYMENT_NOVALNET_ADMIN_LOGOS_DESC" directory="/plugins/vmpayment/novalnet_payment/novalnet_payment/assets/images" default="default" hide_default="1" hide_none="1" stripext="0" exclude="^_" />
+                <field name="shopping_type" type="list" default="0" label="VMPAYMENT_NOVALNET_ADMIN_SHOPPING_TYPE" description="VMPAYMENT_NOVALNET_ADMIN_ENABLE_OPTION_DESC">
+                    <option value="0">JNONE</option>
+                    <option value="one_click">VMPAYMENT_NOVALNET_ONE_CLICK_SHOPPING</option>
+                    <option value="zero_amount">VMPAYMENT_NOVALNET_ZERO_AMOUNT_BOOKING</option>
+                </field>
+                <field type="spacer" default="" level="level1" />
+                <field type="spacer" default="" level="level1" />
+                <field name="nn_end_customer" type="text" label="VMPAYMENT_NOVALNET_ADMIN_END_CUSTOMER_INFO" description="VMPAYMENT_NOVALNET_ADMIN_END_CUSTOMER_INFO_DESC" />
+                <field class="sepa_nn_due_date" name="sepa_nn_due_date" type="number" label="VMPAYMENT_NOVALNET_ADMIN_SEPA_PAYMENT_DURATION" description="VMPAYMENT_NOVALNET_ADMIN_SEPA_PAYMENT_DURATION_DESC" min="2" max="14" />
+                <field type="vmtitle" class="sepa_duedate" default="VMPAYMENT_NOVALNET_SEPA_DUE_DATE_ERROR" level="level1" />
+                <field name="onhold_action" id="onhold_action" type="radio" default="capture" label="VMPAYMENT_NOVALNET_ADMIN_ENABLE_MANUAL_CHECK_LIMIT_OPTION">
+                    <option value="capture">VMPAYMENT_NOVALNET_MANUAL_CAPTURE</option>
+                    <option value="authorize">VMPAYMENT_NOVALNET_MANUAL_AUTHORIZE</option>
+                </field>
+                <field name="onhold_amount" type="number" label="VMPAYMENT_NOVALNET_MANUAL_CHECK_LIMIT" description="VMPAYMENT_NOVALNET_MANUAL_CHECK_LIMIT_DESC" id="onhold_amount" min="0" />
+                <field type="vmtitle" default="VMPAYMENT_NOVALNET_ADMIN_ORDER_STATUS_PARAMS" level="level1" />
+                <field name="nn_order_status" type="vmorderstate" scope="com_virtuemart" default="C" label="VMPAYMENT_NOVALNET_ADMIN_ORDER_STATUS" />
+                <field type="vmtitle" default="VMPAYMENT_NOVALNET_ADMIN_GUARANTEE" level="level1" />
+                <field class="guarantee_sepa" type="vmtitle" default="VMPAYMENT_NOVALNET_ADMIN_GUARANTEE_BASIC_REQUIREMENT" level="level1" />
+                <field class="guarantee_sepa" type="vmtitle" default="VMPAYMENT_NOVALNET_ADMIN_GUARANTEE_ALLOWED_COUNTRY" level="level1" />
+                <field class="guarantee_sepa" type="vmtitle" default="VMPAYMENT_NOVALNET_ADMIN_GUARANTEE_ALLOWED_CURRENCY" level="level1" />
+                <field class="guarantee_sepa" type="vmtitle" default="VMPAYMENT_NOVALNET_ADMIN_GUARANTEE_MINIMUM_AMOUNT" level="level1" />
+                <field class="guarantee_sepa" type="vmtitle" default="VMPAYMENT_NOVALNET_ADMIN_GUARANTEE_MINIMUM_AGE" level="level1" />
+                <field class="guarantee_sepa" type="vmtitle" default="VMPAYMENT_NOVALNET_ADMIN_GUARANTEE_ADDRESS_VERIFICATION" level="level1" />
+                <field class="guarantee_sepa" type="vmtitle" default="VMPAYMENT_NOVALNET_ADMIN_GUARANTEE_GIFT_CERTIFICATE" level="level1" />
+                <field name="guarantee" type="radio" default="0" label="VMPAYMENT_NOVALNET_ADMIN_GUARANTEE_ENABLE">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="min_amount_guarantee" class="sepa_guarantee_min_amount" type="number" label="VMPAYMENT_NOVALNET_ADMIN_GUARANTEE_MINIMUM" description="VMPAYMENT_NOVALNET_ADMIN_GUARANTEE_MINIMUM_AMOUNT_DESC" min="0" />
+                <field type="vmtitle" class="min_amount_sepa" default="VMPAYMENT_NOVALNET_ADMIN_GUARANTEE_MIN_AMOUNT_VALIDATION" level="level1" />
+                <field name="guarantee_force" type="radio" default="1" label="VMPAYMENT_NOVALNET_ADMIN_GUARANTEE_FORECE" description="VMPAYMENT_NOVALNET_ADMIN_GUARANTEE_FORECE_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field type="vmtitle" default="VMPAYMENT_NOVALNET_ADMIN_ORDER_STATUS_PARAMS" level="level1" />
+                <field name="guarantee_order_status" type="vmorderstate" scope="com_virtuemart" default="U" label="VMPAYMENT_NOVALNET_ADMIN_GUARANTEE_ORDER_STATUS" />
+                <field type="spacer" default="" level="level1" />
+                <field type="vmtitle" default="VMPAYMENT_NOVALNET_ADMIN_PAYMENT_RESTRICTIONS" level="level1" />
+                <field name="countries" type="vmcountries" multiple="true" scope="com_virtuemart" default="" label="VMPAYMENT_NOVALNET_ADMIN_COUNTRIES" description="VMPAYMENT_NOVALNET_ADMIN_COUNTRIES_DESC" />
+                <field name="min_amount" type="text" label="VMPAYMENT_NOVALNET_ADMIN_MIN_AMOUNT" description="VMPAYMENT_NOVALNET_ADMIN_MIN_AMOUNT_DESC" />
+                <field name="max_amount" type="text" label="VMPAYMENT_NOVALNET_ADMIN_MAX_AMOUNT" description="VMPAYMENT_NOVALNET_ADMIN_MAX_AMOUNT_DESC" />
+                <field type="spacer" default="" level="level1" />
+                <field type="vmtitle" default="VMPAYMENT_NOVALNET_ADMIN_DISCOUNTS_AND_FEES" level="level1" />
+                <field name="cost_per_transaction" type="text" label="VMPAYMENT_NOVALNET_ADMIN_COST_PER_TRANSACTION" description="VMPAYMENT_NOVALNET_ADMIN_COST_PER_TRANSACTION_DESC" />
+                <field name="cost_percent_total" type="text" label="VMPAYMENT_NOVALNET_ADMIN_COST_PERCENT_TOTAL" description="VMPAYMENT_NOVALNET_ADMIN_COST_PERCENT_TOTAL_DESC" />
+                <field name="tax_id" type="vmtaxes" scope="com_virtuemart" label="VMPAYMENT_NOVALNET_ADMIN_TAX" description="VMPAYMENT_NOVALNET_ADMIN_TAX_DESC" />
+            </fieldset>
+        </fields>
+    </vmconfig>
+</extension>

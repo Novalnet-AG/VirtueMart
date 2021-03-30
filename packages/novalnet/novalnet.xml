@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.9" type="plugin" group="system" method="upgrade">
+    <name>Novalnet Global Configuration</name>
+    <creationDate>November 20 2019</creationDate>
+    <author>Novalnet AG</author>
+    <authorUrl>https://www.novalnet.de</authorUrl>
+    <authorEmail>technic@novalnet.de</authorEmail>
+    <url>https://www.novalnet.de</url>
+    <copyright>Copyright (C) Novalnet. All rights reserved.</copyright>
+    <license>https://www.novalnet.de/payment-plugins/kostenlos/lizenz</license>
+    <version>11.3.0</version>
+    <description>PLG_SYSTEM_NOVALNET_PLUGIN_DESC</description>
+    <languages>
+        <language tag="en-GB">language/en-GB/en-GB.plg_system_novalnet.ini</language>
+        <language tag="de-DE">language/de-DE/de-DE.plg_system_novalnet.ini</language>
+    </languages>
+    <files>
+        <filename plugin="novalnet">novalnet.php</filename>
+        <folder>language</folder>
+        <folder>models</folder>
+        <folder>assets</folder>
+    </files>
+    <config>
+        <fields name="params" addfieldpath="/plugins/system/novalnet/models/fields">
+            <!-- Novalnet Vendor configuration -->
+            <fieldset name="basic">
+                <field name="auto_key" type="text" label="PLG_SYSTEM_NOVALNET_PUBLIC_KEY" description="PLG_SYSTEM_NOVALNET_PUBLIC_KEY_DESC" onchange="Novalnet.getConfig(this)" required="true" />
+                <field name="vendor_id" type="hidden" label="PLG_SYSTEM_NOVALNET_MERCHANT_ID" />
+                <field name="auth_code" type="hidden" label="PLG_SYSTEM_NOVALNET_AUTH_CODE" />
+                <field name="product_id" type="hidden" label="PLG_SYSTEM_NOVALNET_PRODUCT_ID" />
+                <field name="tariff_id" type="normaltariff" label="PLG_SYSTEM_NOVALNET_TARIFF_ID" description="PLG_SYSTEM_NOVALNET_TARIFF_ID_DESC" required="true" />
+                <field name="tariff_id_options" type="hidden" />
+                <field name="tariff_id_selected" type="hidden" id="tariff_id_selected" />
+                <field name="access_key" type="hidden" label="PLG_SYSTEM_NOVALNET_ACCESS_KEY" />
+                <field name="referrer_id" type="number" label="PLG_SYSTEM_NOVALNET_REFERER_ID" description="PLG_SYSTEM_NOVALNET_REFERER_ID_DESC" min="0" />
+                <field name="curl_timeout" type="number" default="240" label="PLG_SYSTEM_NOVALNET_GATEWAY_TIMEOUT" description="PLG_SYSTEM_NOVALNET_ADMIN_GATEWAY_TIMEOUT_DESC" min="0" />
+            </fieldset>
+            <!-- Transaction management from Novalnet -->
+            <fieldset name="TRANSACTION_MANAGEMENT">
+                <field name="confirmed_order_status" type="orderstatus" scope="com_virtuemart" default="C" label="PLG_SYSTEM_NOVALNET_DEBIT_TRANSACTION_STATUS" />
+                <field name="canceled_order_status" type="orderstatus" scope="com_virtuemart" default="X" label="PLG_SYSTEM_NOVALNET_CANCEL_TRANSACTION_STATUS" />
+            </fieldset>
+            <!-- Merchant script management from Novalnet -->
+            <fieldset name="VENDOR_SCRIPT">
+                <field name="vendorscript_test_mode" type="list" default="0" label="PLG_SYSTEM_NOVALNET_VENDORSCRIPT_TEST_MODE" description="PLG_SYSTEM_NOVALNET_VENDORSCRIPT_TEST_MODE_DESC">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="enable_vendorscript_mail" type="list" default="0" label="PLG_SYSTEM_NOVALNET_ENABLE_VENDORSCRIPT_MAIL">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="vendorscript_mail_to" type="text" label="PLG_SYSTEM_NOVALNET_VENDORSCRIPT_MAIL_TO" description="PLG_SYSTEM_NOVALNET_VENDORSCRIPT_MAIL_TO_DESC" size="30" class="vendorscript_fields" />
+                <field name="vendorscript_mail_bcc" type="text" label="PLG_SYSTEM_NOVALNET_VENDORSCRIPT_MAIL_BCC" description="PLG_SYSTEM_NOVALNET_VENDORSCRIPT_MAIL_BCC_DESC" size="30" class="vendorscript_fields" />
+                <field name="notify_url" type="notifyurl" label="PLG_SYSTEM_NOVALNET_NOTIFY_URL" description="PLG_SYSTEM_NOVALNET_ADMIN_NOTIFYURL_DESC" />
+            </fieldset>
+        </fields>
+    </config>
+</extension>

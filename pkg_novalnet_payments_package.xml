@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension type="package" version="3.9" method="upgrade">
+	<name>Novalnet Payment Package</name>
+	<author>Novalnet AG</author>
+	<authorEmail>technic@novalnet.de</authorEmail>
+	<authorUrl>https://www.novalnet.de</authorUrl>
+	<creationDate>November 20 2019</creationDate>
+	<packagename>novalnet_payments_package</packagename>
+	<version>11.3.0</version>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<url>https://www.novalnet.de/</url>
+	<packager>Novalnet</packager>
+	<packagerurl>https://www.novalnet.de/</packagerurl>
+	<description>Novalnet Payment Package</description>
+	<files folder="packages">
+		<file type="plugin" id="novalnet" group="system">novalnet.zip</file>
+		<file type="plugin" id="novalnet_payment" group="vmpayment">novalnet_payment.zip</file>
+		<file type="plugin" id="novalnet_cc" group="vmpayment">novalnet_cc.zip</file>
+		<file type="plugin" id="novalnet_sepa" group="vmpayment">novalnet_sepa.zip</file>
+		<file type="plugin" id="novalnet_invoice" group="vmpayment">novalnet_invoice.zip</file>
+		<file type="plugin" id="novalnet_prepayment" group="vmpayment">novalnet_prepayment.zip</file>
+		<file type="plugin" id="novalnet_instantbank" group="vmpayment">novalnet_instantbank.zip</file>
+		<file type="plugin" id="novalnet_ideal" group="vmpayment">novalnet_ideal.zip</file>
+		<file type="plugin" id="novalnet_paypal" group="vmpayment">novalnet_paypal.zip</file>
+		<file type="plugin" id="novalnet_giropay" group="vmpayment">novalnet_giropay.zip</file>
+		<file type="plugin" id="novalnet_eps" group="vmpayment">novalnet_eps.zip</file>
+		<file type="plugin" id="novalnet_przelewy24" group="vmpayment">novalnet_przelewy24.zip</file>
+		<file type="plugin" id="novalnet_cashpayment" group="vmpayment">novalnet_cashpayment.zip</file>
+	</files>
+</extension>

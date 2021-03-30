@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension version="3.9" type="plugin" group="vmpayment" method="upgrade">
+    <name>Novalnet Admin Portal Configuration</name>
+    <creationDate>November 20 2019</creationDate>
+    <author>Novalnet AG</author>
+    <authorUrl>https://www.novalnet.de</authorUrl>
+    <authorEmail>technic@novalnet.de</authorEmail>
+    <url>https://www.novalnet.de</url>
+    <copyright>Copyright (c) Novalnet. All rights reserved.</copyright>
+    <license>https://www.novalnet.de/payment-plugins/kostenlos/lizenz</license>
+    <version>11.3.0</version>
+    <description><![CDATA[<a href="https:/www.novalnet.de" target="_blank">Novalnet</a>]]></description>
+    <files>
+        <filename plugin="novalnet_payment">novalnet_payment.php</filename>
+        <folder>language</folder>
+        <folder>novalnet_payment</folder>
+    </files>
+    <vmconfig>
+        <fields name="params">
+            <fieldset name="basic" addfieldpath="/plugins/vmpayment/novalnet_payment/novalnet_payment/fields">
+                <field type="adminconfiguration" id="admin_configuration" />
+            </fieldset>
+        </fields>
+    </vmconfig>
+</extension>
